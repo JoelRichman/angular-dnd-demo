@@ -2,8 +2,8 @@
   <h2>Ideas</h2>
 
   <div
-    cdkDropList
     #todoList="cdkDropList"
+    cdkDropList
     [cdkDropListData]="todo"
     [cdkDropListConnectedTo]="[doneList, nopeList]"
     class="example-list"
@@ -24,7 +24,10 @@
     class="example-list"
     (cdkDropListDropped)="drop($event)"
   >
-    <div class="example-box" *ngFor="let item of nope" cdkDrag>{{ item }}</div>
+    <div class="example-box" *ngFor="let item of nope" cdkDrag>
+      {{ item }}
+      <div *cdkDragPreview class="preview-nope">Drag Preview of {{ item }}</div>
+    </div>
   </div>
 </div>
 
@@ -39,6 +42,9 @@
     class="example-list"
     (cdkDropListDropped)="drop($event)"
   >
-    <div class="example-box" *ngFor="let item of done" cdkDrag>{{ item }}</div>
+    <div class="example-box" *ngFor="let item of done" cdkDrag>
+      {{ item }}
+      <div *cdkDragPreview class="preview-yes">Drag Preview of {{ item }}</div>
+    </div>
   </div>
 </div>
