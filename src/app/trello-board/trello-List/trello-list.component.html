@@ -1,0 +1,15 @@
+<div class="trello-list">
+  <div>
+      <app-trello-add-card [list]="list"></app-trello-add-card>
+      {{ list.title }}
+  </div>
+  <div
+    class="card-list"
+    cdkDropList
+    [id]="list.id"
+    [cdkDropListData]="list.cards"
+    (cdkDropListDropped)="drop($event)"
+  >
+    <app-trello-card *ngFor="let card of list.cards" [card]="card" cdkDrag></app-trello-card>
+  </div>
+</div>

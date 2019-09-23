@@ -1,0 +1,5 @@
+<div class="trello-board" *ngIf="vm.board$ | async ; let board" cdkDropListGroup>
+  <app-trello-list *ngFor="let list of board.lists" [list]="list">
+  </app-trello-list>
+  <app-trello-add-list></app-trello-add-list>
+</div>
