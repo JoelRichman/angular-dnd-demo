@@ -1,32 +1,17 @@
 <div class="example-container">
   <h2>Ideas</h2>
 
-  <div
-    #todoList="cdkDropList"
-    cdkDropList
-    [cdkDropListData]="todo"
-    [cdkDropListConnectedTo]="[doneList, nopeList]"
-    class="example-list"
-    (cdkDropListDropped)="drop($event)"
-  >
-    <div class="example-box" *ngFor="let item of todo" cdkDrag>{{ item }}</div>
+  <div class="example-list">
+    <div class="example-box" *ngFor="let item of todo">{{ item }}</div>
   </div>
 </div>
 
 <div class="example-container">
   <h2>Nope</h2>
 
-  <div
-    cdkDropList
-    #nopeList="cdkDropList"
-    [cdkDropListData]="nope"
-    [cdkDropListConnectedTo]="[todoList, doneList]"
-    class="example-list"
-    (cdkDropListDropped)="drop($event)"
-  >
-    <div class="example-box" *ngFor="let item of nope" cdkDrag>
+  <div class="example-list">
+    <div class="example-box" *ngFor="let item of nope">
       {{ item }}
-      <div *cdkDragPreview class="preview-nope">Drag Preview of {{ item }}</div>
     </div>
   </div>
 </div>
@@ -34,17 +19,48 @@
 <div class="example-container">
   <h2>Yes</h2>
 
-  <div
-    cdkDropList
-    #doneList="cdkDropList"
-    [cdkDropListData]="done"
-    [cdkDropListConnectedTo]="[todoList, nopeList]"
-    class="example-list"
-    (cdkDropListDropped)="drop($event)"
-  >
-    <div class="example-box" *ngFor="let item of done" cdkDrag>
+  <div class="example-list">
+    <div class="example-box" *ngFor="let item of done">
       {{ item }}
-      <div *cdkDragPreview class="preview-yes">Drag Preview of {{ item }}</div>
     </div>
   </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+cdkDropList
+#todoList="cdkDropList"
+[cdkDropListData]="todo"
+(cdkDropListDropped)="drop($event)"
+[cdkDropListConnectedTo]="[doneList, nopeList]"
+-->
+
+<!-- cdkDropList
+#nopeList="cdkDropList"
+[cdkDropListData]="nope"
+[cdkDropListConnectedTo]="[todoList, doneList]"
+(cdkDropListDropped)="drop($event)" 
+-->
+
+<!-- cdkDropList
+#doneList="cdkDropList"
+[cdkDropListData]="done"
+[cdkDropListConnectedTo]="[todoList, nopeList]"
+(cdkDropListDropped)="drop($event)" 
+-->
+
+<!-- cdkDrag -->
+
+<!-- 
+  <div *cdkDragPreview class="preview-nope">Drag Preview of {{ item }}</div> 
+  <div *cdkDragPreview class="preview-yes">Drag Preview of {{ item }}</div>
+-->
