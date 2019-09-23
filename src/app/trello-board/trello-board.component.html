@@ -1,5 +1,10 @@
-<div class="trello-board" *ngIf="vm.board$ | async ; let board" cdkDropListGroup>
-  <app-trello-list *ngFor="let list of board.lists" [list]="list">
-  </app-trello-list>
+<div
+  class="trello-board"
+  *ngIf="vm.board$ | async; let board"
+  cdkDropList
+  (cdkDropListDropped)="drop($event)"
+  cdkDropListOrientation="horizontal"
+>
+  <app-trello-list *ngFor="let list of board.lists" [list]="list" cdkDrag> </app-trello-list>
   <app-trello-add-list></app-trello-add-list>
 </div>

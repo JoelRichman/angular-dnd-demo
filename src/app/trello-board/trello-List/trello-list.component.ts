@@ -1,40 +1,30 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, AfterViewInit } from '@angular/core';
 import { TrelloList } from '../api/models';
 import { TrelloService } from '../api/trello.service';
-import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, CdkDropList } from '@angular/cdk/drag-drop';
 import { map, tap } from 'rxjs/operators';
-import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-trello-list',
   templateUrl: './trello-list.component.html',
   styleUrls: ['./trello-list.component.scss']
 })
-export class TrelloColumnComponent implements OnInit {
+export class TrelloColumnComponent implements OnInit, AfterViewInit {
+
   @Input() list: TrelloList;
+  @ViewChild(CdkDropList, { static: false }) dropList: CdkDropList;
 
-  // listIds: string[];
+  dropLists$ = this.trelloSvc.registeredLists$.pipe(map(x => x[0] || []));
 
-  constructor(private trelloSvc: TrelloService) {
-  }
+  constructor(private trelloSvc: TrelloService) {}
 
-  // filter(x => x.id !== this.list.id)
+  ngOnInit() { }
 
-  ngOnInit() {
-    // this.trelloSvc.trello$.pipe(
-    //   map(board => {
-    //     return this.list ? board.lists.map(l => `list${l.sequence}`) : [];
-    //   }
-    //   ),
-    //   tap(value => console.log(value))
-    // ).subscribe(x => {
-    //   this.listIds = x; // JSON.stringify(x).replace(/"/g, '\'');
-    // });
-
+  ngAfterViewInit() {
+    this.trelloSvc.registerDropList(this.dropList);
   }
 
   drop(event: CdkDragDrop<string[]>) {
-    console.log(event);
     if (event.previousContainer.id === event.container.id) {
       this.trelloSvc.moveCardInList(this.list.id, event.previousIndex, event.currentIndex);
     } else {
