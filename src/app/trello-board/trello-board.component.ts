@@ -18,9 +18,27 @@ export class TrelloBoardComponent implements OnInit {
   ngOnInit() {
   }
 
-  drop(event: CdkDragDrop<string[]>) {
-    if (event.previousContainer.id === event.container.id) {
-      this.trelloSvc.moveList(event.previousIndex, event.currentIndex);
-    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+drop(event: CdkDragDrop<string[]>) {
+  if (event.previousContainer.id === event.container.id) {
+    this.trelloSvc.moveList(event.previousIndex, event.currentIndex);
   }
 }
+
+*/

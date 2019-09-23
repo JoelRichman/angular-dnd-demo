@@ -12,11 +12,6 @@ export class TrelloService {
   private trelloBs = new BehaviorSubject<TrelloBoard>(this.trelloBoard);
   public trello$ = this.trelloBs.asObservable();
 
-  private registeredLists: CdkDropList[] = [];
-  private registeredListsBs = new BehaviorSubject<CdkDropList[]>(this.registeredLists);
-  registeredLists$ = combineLatest(this.registeredListsBs.asObservable())
-    .pipe(distinctUntilChanged(), shareReplay(1));
-
   constructor() {}
 
   addCard(column: TrelloList) {
@@ -56,12 +51,33 @@ export class TrelloService {
     transferArrayItem(previousList.cards, newList.cards, previousIndex, newIndex);
   }
 
+  private next() {
+    this.trelloBs.next(this.trelloBoard);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+  private registeredLists: CdkDropList[] = [];
+  private registeredListsBs = new BehaviorSubject<CdkDropList[]>(this.registeredLists);
+  registeredLists$ = combineLatest(this.registeredListsBs.asObservable())
+    .pipe(distinctUntilChanged(), shareReplay(1));
+
   registerDropList(list: CdkDropList) {
     this.registeredLists.push(list);
     this.registeredListsBs.next(this.registeredLists);
   }
 
-  private next() {
-    this.trelloBs.next(this.trelloBoard);
-  }
-}
+*/
