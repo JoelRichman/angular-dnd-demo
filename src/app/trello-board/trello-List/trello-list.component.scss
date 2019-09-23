@@ -6,6 +6,19 @@
   border: 1px solid lightgray;
   border-radius: .5em;
   background-color: rgb(235, 236, 240);
+
+  header {
+    div {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .title {
+      cursor: move;
+      padding-left: 10px;
+      color: darkblue;
+    }
+  }
 }
 
 .card-list {
