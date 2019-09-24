@@ -1,8 +1,16 @@
-import { Component, OnInit, Input, ViewChild, AfterViewInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  ViewChild,
+  AfterViewInit,
+  Output,
+  EventEmitter
+} from '@angular/core';
 import { TrelloList } from '../api/models';
 import { TrelloService } from '../api/trello.service';
 import { CdkDragDrop, CdkDropList } from '@angular/cdk/drag-drop';
-import { map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-trello-list',
@@ -10,18 +18,18 @@ import { map, tap } from 'rxjs/operators';
   styleUrls: ['./trello-list.component.scss']
 })
 export class TrelloColumnComponent implements OnInit, AfterViewInit {
-
   @Input() list: TrelloList;
-  @ViewChild(CdkDropList, { static: false }) dropList: CdkDropList;
+  @Input() registeredLists = [];
+  @Output() registerDropList: EventEmitter<CdkDropList> = new EventEmitter();
 
-  dropLists$ = this.trelloSvc.registeredLists$.pipe(map(x => x[0] || []));
+  @ViewChild(CdkDropList, { static: false }) dropList: CdkDropList;
 
   constructor(private trelloSvc: TrelloService) {}
 
-  ngOnInit() { }
+  ngOnInit(): void {}
 
-  ngAfterViewInit() {
-    this.trelloSvc.registerDropList(this.dropList);
+  ngAfterViewInit(): void {
+    this.registerDropList.emit(this.dropList);
   }
 
   drop(event: CdkDragDrop<string[]>) {

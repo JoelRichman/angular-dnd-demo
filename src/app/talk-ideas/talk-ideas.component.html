@@ -1,50 +1,50 @@
-<div class="example-container">
+<div class="talk-container">
   <h2>Ideas</h2>
 
   <div
-    #todoList="cdkDropList"
+    class="talk-list"
     cdkDropList
-    [cdkDropListData]="todo"
-    [cdkDropListConnectedTo]="[doneList, nopeList]"
-    class="example-list"
+    #talkList="cdkDropList"
+    [cdkDropListData]="talks"
     (cdkDropListDropped)="drop($event)"
+    [cdkDropListConnectedTo]="[declinedList, acceptedList]"
   >
-    <div class="example-box" *ngFor="let item of todo" cdkDrag>{{ item }}</div>
+    <div class="talk-idea" *ngFor="let talk of talks" cdkDrag>{{ talk }}</div>
   </div>
 </div>
 
-<div class="example-container">
+<div class="talk-container">
   <h2>Nope</h2>
 
   <div
+    class="talk-list"
     cdkDropList
-    #nopeList="cdkDropList"
-    [cdkDropListData]="nope"
-    [cdkDropListConnectedTo]="[todoList, doneList]"
-    class="example-list"
+    #declinedList="cdkDropList"
+    [cdkDropListData]="declined"
     (cdkDropListDropped)="drop($event)"
+    [cdkDropListConnectedTo]="[talkList, acceptedList]"
   >
-    <div class="example-box" *ngFor="let item of nope" cdkDrag>
-      {{ item }}
-      <div *cdkDragPreview class="preview-nope">Drag Preview of {{ item }}</div>
+    <div class="talk-idea" *ngFor="let talk of declined" cdkDrag>
+      {{ talk }}
+      <div *cdkDragPreview class="preview-nope">Drag Preview of {{ talk }}</div>
     </div>
   </div>
 </div>
 
-<div class="example-container">
+<div class="talk-container">
   <h2>Yes</h2>
 
   <div
+    class="talk-list"
     cdkDropList
-    #doneList="cdkDropList"
-    [cdkDropListData]="done"
-    [cdkDropListConnectedTo]="[todoList, nopeList]"
-    class="example-list"
+    #acceptedList="cdkDropList"
+    [cdkDropListData]="accepted"
     (cdkDropListDropped)="drop($event)"
+    [cdkDropListConnectedTo]="[talkList, declinedList]"
   >
-    <div class="example-box" *ngFor="let item of done" cdkDrag>
-      {{ item }}
-      <div *cdkDragPreview class="preview-yes">Drag Preview of {{ item }}</div>
+    <div class="talk-idea" *ngFor="let talk of accepted" cdkDrag>
+      {{ talk }}
+      <div *cdkDragPreview class="preview-yes">Drag Preview of {{ talk }}</div>
     </div>
   </div>
 </div>

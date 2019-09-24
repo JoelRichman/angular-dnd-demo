@@ -3,17 +3,15 @@
     <div>
       <app-trello-add-card [list]="list"></app-trello-add-card>
     </div>
-    <div class="title">
-      {{ list.title }}
-    </div>
+    <div class="title">{{ list.title }}</div>
   </header>
   <div
     class="card-list"
     [id]="list.id"
     cdkDropList
     [cdkDropListData]="list.cards"
-    [cdkDropListConnectedTo]="dropLists$ | async"
     (cdkDropListDropped)="drop($event)"
+    [cdkDropListConnectedTo]="registeredLists"
   >
     <app-trello-card *ngFor="let card of list.cards" [card]="card" cdkDrag></app-trello-card>
   </div>

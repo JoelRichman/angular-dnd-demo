@@ -1,0 +1,196 @@
+{
+  "Dnd Talk Drop JS": {
+    "scope": "javascript,typescript",
+    "prefix": "dnd-talk-drop-js",
+    "body": [
+      "drop(event: CdkDragDrop<string[]>) { ",
+      "	if (event.previousContainer === event.container) { ",
+      "		moveItemInArray(event.container.data, event.previousIndex, event.currentIndex); ",
+      "		console.log(event.container.data); ",
+      "	} else { ",
+      "		transferArrayItem( ",
+      "			event.previousContainer.data, ",
+      "			event.container.data, ",
+      "			event.previousIndex, ",
+      "			event.currentIndex ",
+      "		); ",
+      "	} ",
+      "} "
+    ],
+    "description": ""
+  },
+  "Dnd Talk List Markup": {
+    "scope": "html",
+    "prefix": "dnd-talk-droplist-html",
+    "body": [
+      "",
+      "cdkDropList",
+      "#talkList=\"cdkDropList\"",
+      "[cdkDropListData]=\"talks\"",
+      "(cdkDropListDropped)=\"drop(\\$event)\"",
+      "[cdkDropListConnectedTo]=\"[declinedList, acceptedList]\""
+    ],
+    "description": ""
+  },
+  "Dnd Talk Declined Markup": {
+    "scope": "html",
+    "prefix": "dnd-talk-declined-html",
+    "body": [
+      "",
+      "cdkDropList",
+      "#declinedList=\"cdkDropList\"",
+      "[cdkDropListData]=\"declined\"",
+      "(cdkDropListDropped)=\"drop(\\$event)\"",
+      "[cdkDropListConnectedTo]=\"[talkList, acceptedList]\""
+    ],
+    "description": ""
+  },
+  "Dnd Talk Accepted Markup": {
+    "scope": "html",
+    "prefix": "dnd-talk-accepted-html",
+    "body": [
+      "",
+      "cdkDropList",
+      "#acceptedList=\"cdkDropList\"",
+      "[cdkDropListData]=\"accepted\"",
+      "(cdkDropListDropped)=\"drop(\\$event)\"",
+      "[cdkDropListConnectedTo]=\"[talkList, declinedList]\""
+    ],
+    "description": ""
+  },
+  "Dnd Drag Preview": {
+    "scope": "html",
+    "prefix": "dnd-drag-preview",
+    "body": [
+      "",
+      "<div *cdkDragPreview class=\"preview-nope\">Drag Preview of {{ talk }}</div>",
+      ""
+    ],
+    "description": ""
+  },
+
+  "Dnd Trello Drop JS": {
+    "scope": "javascript,typescript",
+    "prefix": "dnd-trellolist-drop-js",
+    "body": [
+      "drop(event: CdkDragDrop<string[]>) {",
+      "  if (event.previousContainer.id === event.container.id) {",
+      "    this.trelloSvc.moveCardInList(this.list.id, event.previousIndex, event.currentIndex);",
+      "  } else {",
+      "    this.trelloSvc.moveCardToNewList(",
+      "      event.previousContainer.id,",
+      "      event.container.id,",
+      "      event.previousIndex,",
+      "      event.currentIndex",
+      "    );",
+      "  }",
+      "}"
+    ],
+    "description": ""
+  },
+
+  "Dnd Trello ViewChild": {
+    "scope": "javascript,typescript",
+    "prefix": "dnd-trellolist-viewchild-js",
+    "body": [
+      "@Input() registeredLists = [];",
+      "@Output() registerDropList: EventEmitter<CdkDropList> = new EventEmitter();",
+      "",
+      "@ViewChild(CdkDropList, { static: false }) dropList: CdkDropList;"
+    ],
+    "description": ""
+  },
+
+  "Dnd Trello Register List": {
+    "scope": "javascript,typescript",
+    "prefix": "dnd-trellolist-register-list-js",
+    "body": ["this.registerDropList.emit(this.dropList);"],
+    "description": ""
+  },
+
+  // "Dnd Trello Service Lists Observable": {
+  //   "scope": "javascript,typescript",
+  //   "prefix": "dnd-trello-service-lists-observable-js",
+  //   "body": [
+  //     "private registeredLists: CdkDropList[] = []; ",
+  //     "private registeredListsBs = new BehaviorSubject<CdkDropList[]>(this.registeredLists); ",
+  //     "registeredLists$ = combineLatest(this.registeredListsBs.asObservable()) ",
+  //     "  .pipe(distinctUntilChanged(), shareReplay(1));"
+  //   ],
+  //   "description": ""
+  // },
+
+  // "Dnd Trello Service Register Lists": {
+  //   "scope": "javascript,typescript",
+  //   "prefix": "dnd-trello-service-register-lists-js",
+  //   "body": [
+  //     "registerDropList(list: CdkDropList) { ",
+  //     "  this.registeredLists.push(list); ",
+  //     "  this.registeredListsBs.next(this.registeredLists); "
+  //     "}"
+  //   ],
+  //   "description": ""
+  // },
+
+  "Dnd Trello Board Drop": {
+    "scope": "javascript,typescript",
+    "prefix": "dnd-trello-board-drop-js",
+    "body": [
+      "drop(event: CdkDragDrop<string[]>) {",
+      "  this.trelloSvc.moveList(event.previousIndex, event.currentIndex);",
+      "}"
+    ],
+    "description": ""
+  },
+
+  "Dnd Trello Board RegisterList Variables": {
+    "scope": "javascript,typescript",
+    "prefix": "dnd-trello-board-registerlist-variables-js",
+    "body": ["  registeredLists: CdkDropList[] = [];"],
+    "description": ""
+  },
+
+  "Dnd Trello Board RegisterList Event": {
+    "scope": "javascript,typescript",
+    "prefix": "dnd-trello-board-registerlist-event-js",
+    "body": [
+      "onRegisterDropList(dropList: CdkDropList) {",
+      "  this.registeredLists.push(dropList);",
+      "}"
+    ],
+    "description": ""
+  },
+
+  "Dnd Trello Droplist Attributes": {
+    "scope": "html",
+    "prefix": "dnd-trellolist-droplist",
+    "body": [
+      "[id]=\"list.id\"",
+      "cdkDropList",
+      "[cdkDropListData]=\"list.cards\"",
+      "(cdkDropListDropped)=\"drop(\\$event)\""
+    ],
+    "description": ""
+  },
+
+  "Dnd Trello Board Connected To": {
+    "scope": "html",
+    "prefix": "dnd-trello-board-connected-to",
+    "body": [
+      "[registeredLists]=\"registeredLists\"",
+      "(registerDropList)=\"onRegisterDropList(\\$event)\""
+    ],
+    "description": ""
+  },
+
+  "Dnd Trello Board DropLists": {
+    "scope": "html",
+    "prefix": "dnd-trello-board-droplists",
+    "body": [
+      "cdkDropList",
+      "(cdkDropListDropped)=\"drop(\\$event)\"",
+      "cdkDropListOrientation=\"horizontal\""
+    ],
+    "description": ""
+  }
+}

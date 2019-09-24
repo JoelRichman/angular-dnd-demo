@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TrelloService } from './api/trello.service';
-import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, CdkDropList } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-trello-board',
@@ -8,19 +8,18 @@ import { CdkDragDrop } from '@angular/cdk/drag-drop';
   styleUrls: ['./trello-board.component.scss']
 })
 export class TrelloBoardComponent implements OnInit {
+  board$ = this.trelloSvc.trello$;
+  registeredLists: CdkDropList[] = [];
 
-  vm = {
-    board$: this.trelloSvc.trello$
-  };
+  constructor(private trelloSvc: TrelloService) {}
 
-  constructor(private trelloSvc: TrelloService) { }
+  ngOnInit() {}
 
-  ngOnInit() {
+  onRegisterDropList(dropList: CdkDropList) {
+    this.registeredLists.push(dropList);
   }
 
   drop(event: CdkDragDrop<string[]>) {
-    if (event.previousContainer.id === event.container.id) {
-      this.trelloSvc.moveList(event.previousIndex, event.currentIndex);
-    }
+    this.trelloSvc.moveList(event.previousIndex, event.currentIndex);
   }
 }

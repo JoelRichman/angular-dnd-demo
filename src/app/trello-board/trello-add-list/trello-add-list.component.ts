@@ -14,7 +14,7 @@ export class TrelloAddListComponent implements OnInit {
   }
 
   addList() {
-    this.trelloSvc.addColumn();
+    this.trelloSvc.addList();
   }
 
 }

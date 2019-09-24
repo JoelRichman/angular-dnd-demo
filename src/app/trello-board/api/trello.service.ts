@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, combineLatest } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { TrelloBoard, TrelloList, TrelloCard } from './models';
-import { moveItemInArray, transferArrayItem, CdkDropList } from '@angular/cdk/drag-drop';
-import { distinctUntilChanged, shareReplay } from 'rxjs/operators';
+import { moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 @Injectable({
   providedIn: 'root'
@@ -12,21 +11,16 @@ export class TrelloService {
   private trelloBs = new BehaviorSubject<TrelloBoard>(this.trelloBoard);
   public trello$ = this.trelloBs.asObservable();
 
-  private registeredLists: CdkDropList[] = [];
-  private registeredListsBs = new BehaviorSubject<CdkDropList[]>(this.registeredLists);
-  registeredLists$ = combineLatest(this.registeredListsBs.asObservable())
-    .pipe(distinctUntilChanged(), shareReplay(1));
-
   constructor() {}
 
-  addCard(column: TrelloList) {
-    const card = new TrelloCard(column.cards.length, `Card ${column.cards.length + 1}`);
-    const list = this.trelloBoard.lists.find(x => x.id === column.id);
-    list.cards.push(card);
+  addCardToList(list: TrelloList) {
+    const foundList = this.trelloBoard.lists.find(x => x.id === list.id);
+    const card = new TrelloCard(foundList.cards.length, `Card ${foundList.cards.length + 1}`);
+    foundList.cards.push(card);
     this.next();
   }
 
-  addColumn() {
+  addList() {
     const list = new TrelloList(
       this.trelloBoard.lists.length,
       `List ${this.trelloBoard.lists.length + 1}`
@@ -56,12 +50,8 @@ export class TrelloService {
     transferArrayItem(previousList.cards, newList.cards, previousIndex, newIndex);
   }
 
-  registerDropList(list: CdkDropList) {
-    this.registeredLists.push(list);
-    this.registeredListsBs.next(this.registeredLists);
-  }
-
   private next() {
     this.trelloBs.next(this.trelloBoard);
+    console.log(this.trelloBoard);
   }
 }
