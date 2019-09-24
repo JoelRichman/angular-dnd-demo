@@ -14,4 +14,18 @@ export class TalkIdeasComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {}
+
+  drop(event: CdkDragDrop<string[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+      console.log(event.container.data);
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+    }
+  }
 }

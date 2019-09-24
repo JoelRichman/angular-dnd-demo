@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, combineLatest } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { TrelloBoard, TrelloList, TrelloCard } from './models';
-import { moveItemInArray, transferArrayItem, CdkDropList } from '@angular/cdk/drag-drop';
-import { distinctUntilChanged, shareReplay } from 'rxjs/operators';
+import { moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 @Injectable({
   providedIn: 'root'
