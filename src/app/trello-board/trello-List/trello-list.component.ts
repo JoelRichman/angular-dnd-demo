@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, AfterViewInit, Output, EventEmitter } from '@angular/core';
 import { TrelloList } from '../api/models';
 import { TrelloService } from '../api/trello.service';
 import { CdkDragDrop, CdkDropList } from '@angular/cdk/drag-drop';
@@ -16,6 +16,6 @@ export class TrelloColumnComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {}
 
-  ngAfterViewInit(): void {
-  }
+  ngAfterViewInit(): void { }
+
 }

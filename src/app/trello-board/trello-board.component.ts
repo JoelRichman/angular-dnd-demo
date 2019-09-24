@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TrelloService } from './api/trello.service';
-import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, CdkDropList } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-trello-board',
@@ -15,5 +15,4 @@ export class TrelloBoardComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }

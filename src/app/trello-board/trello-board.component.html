@@ -1,4 +1,9 @@
 <div class="trello-board" *ngIf="board$ | async; let board">
-  <app-trello-list *ngFor="let list of board.lists" [list]="list"></app-trello-list>
+  <app-trello-list
+    *ngFor="let list of board.lists"
+    [list]="list"
+    [registeredLists]="registeredLists"
+    (registerDropList)="onRegisterDropList($event)"
+  ></app-trello-list>
   <app-trello-add-list></app-trello-add-list>
 </div>
