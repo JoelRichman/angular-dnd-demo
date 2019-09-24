@@ -69,6 +69,36 @@
     "description": ""
   },
 
+  "Dnd Drag Disable": {
+    "scope": "html",
+    "prefix": "dnd-drag-disable",
+    "body": [
+      "",
+      "[cdkDragDisabled]=\"card.title === 'Card 3'\",
+    ],
+    "description": ""
+  },
+
+  "Dnd Drag Predicate Markup": {
+    "scope": "html",
+    "prefix": "dnd-drag-predicate-markup",
+    "body": [
+      "[cdkDropListEnterPredicate]=\"noDropPredicate\"",
+    ],
+    "description": ""
+  },
+
+  "Dnd Drag Predicate Method": {
+    "scope": "typescript",
+    "prefix": "dnd-drag-predicate-method",
+    "body": [
+      "noDropPredicate(item: CdkDrag<TrelloCard>) {",
+      " return item.data.Title !== 'Card 2';",
+      "}"
+    ],
+    "description": ""
+  },
+
   "Dnd Trello Drop JS": {
     "scope": "javascript,typescript",
     "prefix": "dnd-trellolist-drop-js",
