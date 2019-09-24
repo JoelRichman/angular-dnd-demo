@@ -1,0 +1,71 @@
+{
+  "Dnd Talk Drop JS": {
+    "scope": "javascript,typescript",
+    "prefix": "dnd-talk-drop-js",
+    "body": [
+      "drop(event: CdkDragDrop<string[]>) { ",
+      "	if (event.previousContainer === event.container) { ",
+      "		moveItemInArray(event.container.data, event.previousIndex, event.currentIndex); ",
+      "		console.log(event.container.data); ",
+      "	} else { ",
+      "		transferArrayItem( ",
+      "			event.previousContainer.data, ",
+      "			event.container.data, ",
+      "			event.previousIndex, ",
+      "			event.currentIndex ",
+      "		); ",
+      "	} ",
+      "} "
+    ],
+    "description": ""
+  },
+  "Dnd Talk List Markup": {
+    "scope": "html",
+    "prefix": "dnd-talk-droplist-html",
+    "body": [
+      "",
+      "cdkDropList",
+      "#talkList=\"cdkDropList\"",
+      "[cdkDropListData]=\"talks\"",
+      "(cdkDropListDropped)=\"drop(\\$event)\"",
+      "[cdkDropListConnectedTo]=\"[declinedList, acceptedList]\""
+    ],
+    "description": ""
+  },
+  "Dnd Talk Declined Markup": {
+    "scope": "html",
+    "prefix": "dnd-talk-declined-html",
+    "body": [
+      "",
+      "cdkDropList",
+      "#declinedList=\"cdkDropList\"",
+      "[cdkDropListData]=\"declined\"",
+      "(cdkDropListDropped)=\"drop(\\$event)\"",
+      "[cdkDropListConnectedTo]=\"[talkList, acceptedList]\""
+    ],
+    "description": ""
+  },
+  "Dnd Talk Accepted Markup": {
+    "scope": "html",
+    "prefix": "dnd-talk-accepted-html",
+    "body": [
+      "",
+      "cdkDropList",
+      "#acceptedList=\"cdkDropList\"",
+      "[cdkDropListData]=\"accepted\"",
+      "(cdkDropListDropped)=\"drop(\\$event)\"",
+      "[cdkDropListConnectedTo]=\"[talkList, declinedList]\""
+    ],
+    "description": ""
+  },
+  "Dnd Drag Preview": {
+    "scope": "html",
+    "prefix": "dnd-drag-preview",
+    "body": [
+      "",
+      "<div *cdkDragPreview class=\"preview-nope\">Drag Preview of {{ talk }}</div>",
+      ""
+    ],
+    "description": ""
+  }
+}

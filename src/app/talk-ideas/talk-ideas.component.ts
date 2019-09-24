@@ -7,41 +7,11 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
   styleUrls: ['./talk-ideas.component.scss']
 })
 export class TalkIdeasComponent implements OnInit {
-
-  todo = ['NGRX 8', 'Large Component Refactor', 'Resizable Containers', 'Drag and Drop'];
-  done = [];
-  nope = [];
+  talks = ['NGRX 8', 'Large Component Refactor', 'Resizable Containers', 'Drag and Drop'];
+  declined = [];
+  accepted = [];
 
   constructor() {}
 
-  ngOnInit() { }
-
+  ngOnInit() {}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// drop(event: CdkDragDrop<string[]>) {
-//   if (event.previousContainer === event.container) {
-//     moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-//   } else {
-//     transferArrayItem(
-//       event.previousContainer.data,
-//       event.container.data,
-//       event.previousIndex,
-//       event.currentIndex
-//     );
-//   }
-// }
-
