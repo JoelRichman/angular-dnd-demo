@@ -74,7 +74,7 @@
     "prefix": "dnd-drag-disable",
     "body": [
       "",
-      "[cdkDragDisabled]=\"card.title === 'Card 3'\",
+      "[cdkDragDisabled]=\"card.title === 'Card 3'\"",
     ],
     "description": ""
   },
