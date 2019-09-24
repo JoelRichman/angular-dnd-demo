@@ -1,41 +1,11 @@
 <div class="trello-list">
   <header>
-    <div>
+    <div cdkDragHandle>
       <app-trello-add-card [list]="list"></app-trello-add-card>
     </div>
-    <div class="title"> {{ list.title }} </div>
+    <div class="title">{{ list.title }}</div>
   </header>
-  <div class="card-list" >
+  <div class="card-list">
     <app-trello-card *ngFor="let card of list.cards" [card]="card"></app-trello-card>
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- 
-[id]="list.id"
-cdkDropList
-[cdkDropListData]="list.cards"
-(cdkDropListDropped)="drop($event)"
-
-
-[cdkDropListConnectedTo]="dropLists$ | async"
-
--->
-<!-- 
- cdkDrag
-  -->

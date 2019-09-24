@@ -20,6 +20,6 @@ export class TrelloAddCardComponent {
   }
 
   addCard(): void {
-    this.trelloSvc.addCard(this.list);
+    this.trelloSvc.addCardToList(this.list);
   }
 }

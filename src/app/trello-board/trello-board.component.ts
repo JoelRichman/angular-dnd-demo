@@ -9,9 +9,7 @@ import { CdkDragDrop } from '@angular/cdk/drag-drop';
 })
 export class TrelloBoardComponent implements OnInit {
 
-  vm = {
-    board$: this.trelloSvc.trello$
-  };
+  board$ = this.trelloSvc.trello$;
 
   constructor(private trelloSvc: TrelloService) { }
 
@@ -19,26 +17,3 @@ export class TrelloBoardComponent implements OnInit {
   }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-
-drop(event: CdkDragDrop<string[]>) {
-  if (event.previousContainer.id === event.container.id) {
-    this.trelloSvc.moveList(event.previousIndex, event.currentIndex);
-  }
-}
-
-*/
