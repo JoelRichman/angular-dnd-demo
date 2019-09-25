@@ -8,8 +8,7 @@
   <app-trello-list
     *ngFor="let list of board.lists"
     [list]="list"
-    [registeredLists]="registeredLists"
-    (registerDropList)="onRegisterDropList($event)"
+    [connectedLists]="connectedlists$ | async"
     cdkDrag
   ></app-trello-list>
   <app-trello-add-list></app-trello-add-list>
