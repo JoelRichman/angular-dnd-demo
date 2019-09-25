@@ -31,11 +31,13 @@ export class TrelloService {
 
   moveList(previousIndex: number, newIndex: number) {
     moveItemInArray(this.trelloBoard.lists, previousIndex, newIndex);
+    this.next();
   }
 
   moveCardInList(listId: string, previousIndex: number, newIndex: number) {
     const list = this.trelloBoard.lists.find(x => x.id === listId);
     moveItemInArray(list.cards, previousIndex, newIndex);
+    this.next();
   }
 
   moveCardToNewList(
@@ -48,10 +50,10 @@ export class TrelloService {
     const newList = this.trelloBoard.lists.find(x => x.id === newListId);
 
     transferArrayItem(previousList.cards, newList.cards, previousIndex, newIndex);
+    this.next();
   }
 
   private next() {
     this.trelloBs.next(this.trelloBoard);
-    console.log(this.trelloBoard);
   }
 }

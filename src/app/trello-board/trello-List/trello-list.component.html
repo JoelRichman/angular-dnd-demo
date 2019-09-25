@@ -11,7 +11,7 @@
     cdkDropList
     [cdkDropListData]="list.cards"
     (cdkDropListDropped)="drop($event)"
-    [cdkDropListConnectedTo]="registeredLists"
+    [cdkDropListConnectedTo]="connectedLists"
   >
     <app-trello-card *ngFor="let card of list.cards" [card]="card" cdkDrag></app-trello-card>
   </div>
